@@ -1,7 +1,11 @@
-var myApp = angular.module('wallet', [
+var myApp = angular.module('myApp', [
 	'ngRoute',
 	'appControllers'
 ]);
+
+
+/* Routes */
+
 
 myApp.config(['$routeProvider', function($routeProvider){
 	$routeProvider.
@@ -9,7 +13,8 @@ myApp.config(['$routeProvider', function($routeProvider){
 			templateUrl: 'partials/landing.html'
 		}).
     when('/wallet', {
-      templateUrl: 'partials/wallet.html'
+      templateUrl: 'partials/wallet.html',
+      controller: 'WalletController'
     }).
 		otherwise({
 			redirectTo: '/home'

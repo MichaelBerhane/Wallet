@@ -1,20 +1,30 @@
-<div class="center">
-
-
-
+<div class="center" ng-controller="WalletController">
 
   <div class ="row">
     <div class ="wallet">
     <div class="col-md-2"><img src="images/face.JPG" alt="..." class="img-circle size"></div>
     <div class="col-md-10">
-      <div id ="balance">£0.00</div>
+      <div id ="balance"><i class="fa fa-gbp"></i> {{balance}}</div>
       <br>
       <small>Balance</small>
     </div>
   </div>
   </div>
 
-
+  <div class="border">
+    <h1> Transactions </h1>
+    <div class="row">
+      <div class="col-md-3">
+        <input type="text" class="form-control" placeholder="Enter Money">
+      </div>
+    </div>
+    <p>
+    <div class="row">
+        <div class="col-md-3">
+          <input type="text" class="form-control" placeholder="Spend Money">
+        </div>
+    </div>
+  </div>
 
 
 </div>
