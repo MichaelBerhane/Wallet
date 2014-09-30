@@ -1,8 +1,50 @@
 body{
 	padding: 40px 0px 40px 0px;
   margin: 0px 60px;
+
 }
 
-.header h1{
+.header{
+  border-bottom: 1px solid #d7d7d7;
+}
 
+#balance {
+  font-size: 56px;
+}
+
+#wallet{
+  border: 1px solid black;
+}
+
+.size {
+  height: 130px;
+}
+
+.center {
+    padding: 0px 0px 200px 0px;
+}
+
+
+
+.jumbotron {
+  margin: 20px 0px 0px 0px;
+  padding: 100px 50px 300px 50px;
+  text-align: center;
+}
+
+.jumbotron h1 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+}
+
+.jumbotron .btn{
+  font-weight: bold;
+  font-size: 28px;
+}
+
+.footer {
+  text-align:center;
+  margin: 20px 0px;
+  padding: 20px 0px;
+  border-top: 1px solid #d7d7d7;
 }

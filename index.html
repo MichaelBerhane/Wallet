@@ -1,46 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp">
+<html ng-app="wallet">
 <head>
 
   <title>Wallet Application</title>
 
   <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
 
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="css/style.css" />
-<link href='http://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'>
+  <script type="text/javascript" src="js/angular.min.js"></script>
+  <script type="text/javascript" src="js/angular-route.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/controller.js"></script>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 </head>
 
 <body>
-<script type="text/javascript" src="js/angular.min.js"></script>
-<script type="text/javascript" src="js/angular-route.min.js"></script>
-
-
 
 <div class ="container-fluid">
+
   <div class="header">
     <ul class="nav nav-pills pull-right hidden-xs">
       <li><a href="#/home">HOME</a></li>
-      <li><a href="#/about">ABOUT</a></li>
+      <li><a href="#/about">RESET</a></li>
+      <li><a href="#/reset">VIEW SOURCE</a></li>
     </ul>
-
-    <h1>Wallet Application</h1>
+    <h3>Wallet Application</h3>
   </div>
 
 
+
   <div ng-view>
-	</div>
+  </div>
 
   <div class ="footer">
     By Michael Berhane
-
   </div>
 
 
 
 </div>
-
-
 
 </body>
