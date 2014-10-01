@@ -4,27 +4,69 @@
     <div class ="wallet">
     <div class="col-md-2"><img src="images/face.JPG" alt="..." class="img-circle size"></div>
     <div class="col-md-10">
-      <div id ="balance"><i class="fa fa-gbp"></i> {{balance}}</div>
+      <div id ="balance"><i ng-class="{'fa fa-gbp': gbpcurrency, 'fa fa-usd': usdcurrency, 'fa fa-eur': eurcurrency}"></i> {{balance | currency: " "}}</div>
       <br>
-      <small>Balance</small>
+      <small>Wallet Balance</small>
     </div>
   </div>
   </div>
 
   <div class="border">
     <h1> Transactions </h1>
-    <div class="row">
-      <div class="col-md-3">
-        <input type="text" class="form-control" placeholder="Enter Money">
+
+    <form ng-submit="add()" class="form-inline" role="form">
+      <div class="form-group">
+        <input type="text" ng-model="field" class ="form-control" placeholder="Enter Money">
       </div>
+    <button type="submit" value="Submit" class="btn btn-default"><i class="fa fa-plus"></i> Add</button>
+    </form>
+    <p>
+    <form ng-submit="minus()" class= "form-inline" role="form">
+      <div class="form-group">
+          <input type="text" ng-model="Minusfield" class="form-control" placeholder="Spend Money">
+      </div>
+    <button type="submit" value="Submit" class="btn btn-default"><i class="fa fa-minus"></i> Subtract</button>
+    </form>
+
+
+
+    <!--<div class="row">
+
+   <div class="col-md-2">
+        <form ng-submit="add()" ng-controller="WalletController">
+            <input type="text" ng-model="field" name="field" class="form-control" placeholder="Enter Money" >
+          </div>
+          <div class="col-md-2">
+            <button type="submit" value="Submit" class="btn btn-default"><i class="fa fa-plus"></i> Add</button>
+          </div>
+        </form>
     </div>
     <p>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
           <input type="text" class="form-control" placeholder="Spend Money">
         </div>
-    </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-default"><i class="fa fa-minus"></i> Subtract</button>
+        </div>
+    </div> -->
   </div>
+
+  <h1>Settings </h1>
+  Change Currency
+  <div class ="row">
+  <div class="col-md-1">
+  <select ng-model="chosen.name" ng-model-options="{ getterSetter: true }" class ="form-control" ng-options="item as item.curr for item in items">
+    {{chosen.name | json}}
+
+  </select>
+  </div>
+</div>
+
+
+
+
+
 
 
 </div>
