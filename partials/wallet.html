@@ -63,8 +63,12 @@
   </select>
 
 </div>
-<div class="col-md-5">
+
+<div class="col-md-5 offset-1" ng-controller="ListController">
   <h1>Listing</h1>
+  <div ng-repeat="t in transactions">
+    {{t.currency + t.amount}}
+  </div>
 
 </div>
 

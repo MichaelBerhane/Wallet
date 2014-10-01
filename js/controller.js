@@ -1,6 +1,24 @@
 var appControllers = angular.module('appControllers', []);
 
 
+  angular.module('myApp').factory('List', function(){
+
+      var transactions = [];
+
+      return {
+        check: function(){
+          return transactions;
+        },
+        add: function(num, curr){
+          transactions.push({amount: num, currency: curr});
+        }
+      };
+  });
+
+
+
+
+
   /*******************
     * Wallet Factory/Model
   ***************************/
@@ -53,11 +71,20 @@ var appControllers = angular.module('appControllers', []);
   });
 
 
+  appControllers.controller('ListController',['$scope', 'Wallet', 'List', function($scope, Wallet, List){
+
+      $scope.transactions = List.check();
+
+
+  }]);
+
+
+
   /*************
   * Wallet Controller
   ********************/
 
-  appControllers.controller('WalletController', ['$scope', 'Wallet', function($scope, Wallet){
+  appControllers.controller('WalletController', ['$scope', 'Wallet', 'List', function($scope, Wallet, List){
 
     $scope.gbpcurrency = true;
     $scope.usdcurrency = false;
@@ -73,8 +100,6 @@ var appControllers = angular.module('appControllers', []);
       $scope.warning = 0;
     }
 
-
-
     $scope.items = [{ id: 1, curr: 'USD' },
         { id: 2, curr: 'GBP' },
         { id: 3, curr: 'EUR'}];
@@ -85,6 +110,7 @@ var appControllers = angular.module('appControllers', []);
       if(Wallet.error($scope.field)){
         $scope.balance = Wallet.add_amount($scope.field);
         hidewarning();
+        List.add($scope.field, $scope.currency);
       }
       else{
         return false;

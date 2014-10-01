@@ -14,7 +14,8 @@ myApp.config(['$routeProvider', function($routeProvider){
 		}).
     when('/wallet', {
       templateUrl: 'partials/wallet.html',
-      controller: 'WalletController'
+      controller: 'WalletController',
+      controller: 'ListController'
     }).
 		otherwise({
 			redirectTo: '/home'
