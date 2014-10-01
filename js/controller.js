@@ -15,18 +15,17 @@ var appControllers = angular.module('appControllers', []);
           return balance;
         },
         add_amount: function(field){
-          balance += field;
-          console.log(balance);
-          return this.check_amount();
+              balance += field;
+              console.log(balance);
+              return this.check_amount();
         },
         minus_amount: function(amount){
-
             balance -= amount;
             console.log(balance + ": minus");
             return this.check_amount();
         },
         correct_amount: function(amount){
-          if((balance -= amount) > 0 )
+          if((amount > balance) || (balance == 0) )
             return false;
           else
             return true;
@@ -40,11 +39,15 @@ var appControllers = angular.module('appControllers', []);
           }
           return currency;
         },
-        currency: function(){
+        currency: function(inputted){
+          currency = inputted;
           return currency;
         },
         reset: function(){
           balance = 0.00;
+        },
+        error: function(number){
+          return angular.isNumber(number);
         }
     };
   });
@@ -59,8 +62,19 @@ var appControllers = angular.module('appControllers', []);
     $scope.gbpcurrency = true;
     $scope.usdcurrency = false;
     $scope.eurcurrency = false;
-    $scope.field = 0.00;
-    $scope.Minusfiled = 0.00;
+    $scope.warning = 0;
+    $scope.currency;
+
+    var showwarning = function(){
+      $scope.warning = 1;
+    }
+
+    var hidewarning = function(){
+      $scope.warning = 0;
+    }
+
+
+
     $scope.items = [{ id: 1, curr: 'USD' },
         { id: 2, curr: 'GBP' },
         { id: 3, curr: 'EUR'}];
@@ -68,12 +82,25 @@ var appControllers = angular.module('appControllers', []);
     $scope.balance = Wallet.check_amount();
 
     $scope.add = function(){
-
-      $scope.balance = Wallet.add_amount(Number($scope.field));
+      if(Wallet.error($scope.field)){
+        $scope.balance = Wallet.add_amount($scope.field);
+        hidewarning();
+      }
+      else{
+        return false;
+      }
     };
 
     $scope.minus = function(){
-      $scope.balance = Wallet.minus_amount(Number($scope.Minusfield));
+      if((Wallet.error($scope.Minusfield)) && (Wallet.correct_amount($scope.Minusfield))){
+        $scope.balance = Wallet.minus_amount($scope.Minusfield);
+        hidewarning();
+
+      }
+      else{
+        showwarning();
+        return false;
+      }
     };
 
 

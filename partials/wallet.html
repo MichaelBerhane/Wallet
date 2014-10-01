@@ -12,60 +12,64 @@
   </div>
 
   <div class="border">
+
+  <div class="row">
+    <div class="col-md-5">
+
     <h1> Transactions </h1>
 
     <form ng-submit="add()" class="form-inline" role="form">
       <div class="form-group">
-        <input type="text" ng-model="field" class ="form-control" placeholder="Enter Money">
+        <select class="form-control" ng-model="currency">
+          <option>£</option>
+          <option>$</option>
+          <option>€</option>
+        </select>
       </div>
-    <button type="submit" value="Submit" class="btn btn-default"><i class="fa fa-plus"></i> Add</button>
+      <div class="form-group">
+        <input type="number" step="any" ng-model="field" class ="form-control" placeholder="Enter Money">
+      </div>
+    <button type="submit" value="Submit" class="btn btn-primary"><i class="fa fa-plus"></i> Add Money To Account</button>
     </form>
+
+
     <p>
     <form ng-submit="minus()" class= "form-inline" role="form">
       <div class="form-group">
-          <input type="text" ng-model="Minusfield" class="form-control" placeholder="Spend Money">
+        <select class="form-control" ng-model="currency">
+          <option>£</option>
+          <option>$</option>
+          <option>€</option>
+        </select>
       </div>
-    <button type="submit" value="Submit" class="btn btn-default"><i class="fa fa-minus"></i> Subtract</button>
+    <div class="form-group">
+          <input type="number" step="any" ng-model="Minusfield" class="form-control" placeholder="Spend Money">
+      </div>
+    <button type="submit" value="Submit" class="btn btn-warning"><i class="fa fa-minus"></i> Spend Money</button>
     </form>
 
-
-
-    <!--<div class="row">
-
-   <div class="col-md-2">
-        <form ng-submit="add()" ng-controller="WalletController">
-            <input type="text" ng-model="field" name="field" class="form-control" placeholder="Enter Money" >
-          </div>
-          <div class="col-md-2">
-            <button type="submit" value="Submit" class="btn btn-default"><i class="fa fa-plus"></i> Add</button>
-          </div>
-        </form>
-    </div>
     <p>
-    <div class="row">
-        <div class="col-md-2">
-          <input type="text" class="form-control" placeholder="Spend Money">
-        </div>
-        <div class="col-md-2">
-          <button type="button" class="btn btn-default"><i class="fa fa-minus"></i> Subtract</button>
-        </div>
-    </div> -->
-  </div>
+    <div class="alert alert-danger" ng-show="warning == 1">
+      <i class="fa fa-exclamation-triangle"></i> You are attempting to spend more then your available balance of: {{balance | currency: " "}}
+    </div>
+  </p>
+
 
   <h1>Settings </h1>
   Change Currency
-  <div class ="row">
-  <div class="col-md-1">
+
   <select ng-model="chosen.name" ng-model-options="{ getterSetter: true }" class ="form-control" ng-options="item as item.curr for item in items">
     {{chosen.name | json}}
-
   </select>
-  </div>
+
+</div>
+<div class="col-md-5">
+  <h1>Listing</h1>
+
 </div>
 
 
-
-
+</div>
 
 
 
