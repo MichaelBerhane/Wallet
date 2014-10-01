@@ -4,13 +4,20 @@ var appControllers = angular.module('appControllers', []);
   angular.module('myApp').factory('List', function(){
 
       var transactions = [];
+      var spent = [];
 
       return {
         check: function(){
           return transactions;
         },
-        add: function(num, curr){
-          transactions.push({amount: num, currency: curr});
+        spentcheck: function(){
+          return spent;
+        },
+        add: function(num, curr, date){
+          transactions.push({amount: num, currency: curr, d: date});
+        },
+        minus: function(num, curr, date){
+          spent.push({amount: num, currency: curr, d: date});
         }
       };
   });
@@ -72,9 +79,8 @@ var appControllers = angular.module('appControllers', []);
 
 
   appControllers.controller('ListController',['$scope', 'Wallet', 'List', function($scope, Wallet, List){
-
       $scope.transactions = List.check();
-
+      $scope.spent = List.spentcheck();
 
   }]);
 
@@ -110,7 +116,8 @@ var appControllers = angular.module('appControllers', []);
       if(Wallet.error($scope.field)){
         $scope.balance = Wallet.add_amount($scope.field);
         hidewarning();
-        List.add($scope.field, $scope.currency);
+        List.add($scope.field, $scope.currency, new Date());
+        $scope.field = 0;
       }
       else{
         return false;
@@ -121,14 +128,14 @@ var appControllers = angular.module('appControllers', []);
       if((Wallet.error($scope.Minusfield)) && (Wallet.correct_amount($scope.Minusfield))){
         $scope.balance = Wallet.minus_amount($scope.Minusfield);
         hidewarning();
-
+        List.minus($scope.Minusfield, $scope.currency, new Date());
+        $scope.Minusfield = 0;
       }
       else{
         showwarning();
         return false;
       }
     };
-
 
 
   }]);

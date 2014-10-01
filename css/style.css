@@ -30,7 +30,9 @@ body{
     padding: 0px 0px 200px 0px;
 }
 
-
+.icon {
+  height: 29px;
+}
 
 .jumbotron {
   margin: 20px 0px 0px 0px;
@@ -53,4 +55,18 @@ body{
   margin: 20px 0px;
   padding: 20px 0px;
   border-top: 1px solid #d7d7d7;
+}
+
+
+@media (max-width: 680px){
+
+  body{
+    padding: 20px 0px 20px 0px;
+    margin: 0px 10px;
+
+  }
+
+
+
+
 }

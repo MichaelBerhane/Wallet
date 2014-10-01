@@ -21,7 +21,7 @@
     <form ng-submit="add()" class="form-inline" role="form">
       <div class="form-group">
         <select class="form-control" ng-model="currency">
-          <option>£</option>
+          <option selected = "selected">£</option>
           <option>$</option>
           <option>€</option>
         </select>
@@ -37,7 +37,7 @@
     <form ng-submit="minus()" class= "form-inline" role="form">
       <div class="form-group">
         <select class="form-control" ng-model="currency">
-          <option>£</option>
+          <option selected ="selected">£</option>
           <option>$</option>
           <option>€</option>
         </select>
@@ -65,9 +65,15 @@
 </div>
 
 <div class="col-md-5 offset-1" ng-controller="ListController">
-  <h1>Listing</h1>
+  <h1>Statement</h1>
+  <div class ="lead">Entered</div>
   <div ng-repeat="t in transactions">
-    {{t.currency + t.amount}}
+     {{"+ " + t.currency + t.amount + " on " + t.d | date:medium }}
+  </div>
+
+  <div class="lead">Saved</div>
+  <div ng-repeat="s in spent">
+     {{"-" + s.currency + s.amount + " on " + s.d | date:medium}}
   </div>
 
 </div>
