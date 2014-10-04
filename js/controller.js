@@ -3,27 +3,37 @@ var appControllers = angular.module('appControllers', []);
 
   angular.module('myApp').factory('List', function(){
 
-      var transactions = [];
-      var spent = [];
+        sessionStorage.transactions;
+        sessionStorage.spent;
+
+        var x = [];
+        var y = [];
 
       return {
         check: function(){
-          return transactions;
+          if(sessionStorage.transactions === undefined){
+          }
+          else{
+            console.log("session_tran: " + sessionStorage.transactions);
+            return JSON.parse(sessionStorage.transactions);
+          }
+
         },
         spentcheck: function(){
-          return spent;
+        /*  return JSON.parse(sessionStorage.spent); */
         },
         add: function(num, curr, date){
-          transactions.push({amount: num, currency: curr, d: date});
+          x.push({amount: num, currency: curr, d: date});
+          sessionStorage.transactions = JSON.stringify(x);
+
         },
         minus: function(num, curr, date){
-          spent.push({amount: num, currency: curr, d: date});
+          y.push({amount: num, currency: curr, d: date});
+          sessionStorage.spent = JSON.stringify(y);
+
         }
       };
   });
-
-
-
 
 
   /*******************
@@ -32,25 +42,36 @@ var appControllers = angular.module('appControllers', []);
 
   angular.module('myApp').factory('Wallet', function(){
 
-    var balance = 0.00;
-    var currency = "gpb";
+    if(sessionStorage.length == 0){
+      sessionStorage.balance = 0.00;
+    }
+    else{
+      sessionStorage.balance;
+    }
+
+    sessionStorage.currency = "gpb";
+    var x;
 
     return {
         check_amount: function(){
-          return balance;
+          x = Number(sessionStorage.balance);
+          console.log("original amount: " + sessionStorage.balance);
+          return x;
         },
         add_amount: function(field){
-              balance += field;
-              console.log(balance);
-              return this.check_amount();
+          x += field;
+          sessionStorage.balance = x;
+          console.log("added amount: " + sessionStorage.balance);;
+          return this.check_amount();
         },
         minus_amount: function(amount){
-            balance -= amount;
-            console.log(balance + ": minus");
+            x -= amount;
+            sessionStorage.balance = x;
+            console.log("added amount" + sessionStorage.balance);
             return this.check_amount();
         },
         correct_amount: function(amount){
-          if((amount > balance) || (balance == 0) )
+          if((amount > x) || (x == 0) )
             return false;
           else
             return true;
@@ -69,7 +90,7 @@ var appControllers = angular.module('appControllers', []);
           return currency;
         },
         reset: function(){
-          balance = 0.00;
+          sessionStorage.balance = 0.00;
         },
         error: function(number){
           return angular.isNumber(number);
