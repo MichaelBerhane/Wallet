@@ -4,7 +4,7 @@ Wallet
 A front-end wallet wallet application built using AngularJS, on top of a node.js server.
 Run application on the command line by running..
 
-<blockquote>node server</blockquote>
+<code>node server</code>
 
 
 <ul>
@@ -29,4 +29,5 @@ Run application on the command line by running..
   <li>Reset balance back to zero</li>
   <li>Reset transactions back to empty</li>
   <li>Change currency of the total wallet</li>
+  <li>Deploy via heroku</li>
 <ul>
