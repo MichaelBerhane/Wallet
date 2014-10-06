@@ -21,6 +21,7 @@ Run application on the command line by running..
 <li>Transactions kept on transactions list</li>
 <li>Change currency per transactions</li>
 <li>Transactions to persist via sessionStorage</li>
+<li>Mobile Menu</li>
 </ul>
 
 
