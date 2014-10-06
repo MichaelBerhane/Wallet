@@ -22,12 +22,12 @@ Run application on the command line by running..
 <li>Change currency per transactions</li>
 <li>Transactions to persist via sessionStorage</li>
 <li>Mobile Menu</li>
+<li>Reset balance back to zero on 'reset button'</li>
 </ul>
 
 
 <h2>Feature Road Map</h2>
 <ul>
-  <li>Reset balance back to zero</li>
   <li>Reset transactions back to empty</li>
   <li>Change currency of the total wallet</li>
   <li>Deploy via heroku</li>

@@ -28,7 +28,6 @@ var appControllers = angular.module('appControllers', []);
         spentcheck: function(){
            return y;
         },
-
         /* add a positive transaction */
         add: function(num, curr, date){
             x.push({amount: num, currency: curr, d: date});
@@ -37,13 +36,17 @@ var appControllers = angular.module('appControllers', []);
             console.log("session_tran: " + sessionStorage.transactions);
 
         },
-
         /* add a minus transaction */
         minus: function(num, curr, date){
           y.push({amount: num, currency: curr, d: date});
           console.log("current array: " + y);
           sessionStorage.spent = JSON.stringify(y);
 
+        },
+        reset: function(){
+          console.log("hello world");
+          var x = [];
+          var y = [];
         }
       };
   });
@@ -101,6 +104,8 @@ var appControllers = angular.module('appControllers', []);
         },
         reset: function(){
           sessionStorage.balance = 0.00;
+          x = 0.00;
+          console.log(sessionStorage.balance);
         },
         error: function(number){
           return angular.isNumber(number);
@@ -115,7 +120,6 @@ var appControllers = angular.module('appControllers', []);
   appControllers.controller('ListController',['$scope', 'Wallet', 'List', function($scope, Wallet, List){
       $scope.transactions = List.check();
       $scope.spent = List.spentcheck();
-
   }]);
 
 
@@ -168,6 +172,12 @@ var appControllers = angular.module('appControllers', []);
         return false;
       }
     };
+
+    $scope.reset = function(){
+      $scope.balance = 0.00;
+      Wallet.reset();
+      List.reset();
+    }
 
 
   }]);
