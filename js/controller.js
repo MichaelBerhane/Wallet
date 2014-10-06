@@ -6,20 +6,23 @@ var appControllers = angular.module('appControllers', []);
         sessionStorage.transactions;
         sessionStorage.spent;
 
-        if(sessionStorage.transactions === undefined){
-            var x = [];
-        }
-        else{
-            var x = JSON.parse(sessionStorage.transactions);
-            /*var y = JSON.parse(sessionStorage.spent); */
-        }
+        if(sessionStorage.transactions === undefined)
+          var x = [];
+        else
+          var x = JSON.parse(sessionStorage.transactions);
+
+        if(sessionStorage.spent === undefined)
+          var y = [];
+        else
+          var y = JSON.parse(sessionStorage.spent);
+
 
       return {
         check: function(){
             return x;
         },
         spentcheck: function(){
-          /*  return y; */
+           return y;
         },
         add: function(num, curr, date){
             x.push({amount: num, currency: curr, d: date});

@@ -20,12 +20,12 @@ Run application on the command line by running..
 <li>Wallet balance persists via sessionStorage</li>
 <li>Transactions kept on transactions list</li>
 <li>Change currency per transactions</li>
+<li>Transactions to persist via sessionStorage</li>
 </ul>
 
 
 <h2>Feature Road Map</h2>
 <ul>
-  <li>Transactions to persist via sessionStorage</li>
   <li>Reset balance back to zero</li>
   <li>Reset transactions back to empty</li>
   <li>Change currency of the total wallet</li>

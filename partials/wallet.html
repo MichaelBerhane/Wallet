@@ -67,12 +67,12 @@
 <div class="col-md-5 offset-1">
   <h1>Statement</h1>
   <div class ="lead">Entered</div>
-  <div ng-repeat="t in transactions">
+  <div ng-repeat="t in transactions track by $index">
      {{"+ " + t.currency + t.amount + " on " + t.d | date:medium }}
   </div>
 
   <div class="lead">Saved</div>
-  <div ng-repeat="s in spent">
+  <div ng-repeat="s in spent track by $index">
      {{"-" + s.currency + s.amount + " on " + s.d | date:medium}}
   </div>
 
