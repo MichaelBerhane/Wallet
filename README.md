@@ -4,7 +4,7 @@ Wallet
 A front-end wallet wallet application built using AngularJS, on top of a node.js server.
 Run application on the command line by running..
 
-<code>node server</code>
+<code><h3>node server</h3></code>
 
 
 <ul>
