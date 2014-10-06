@@ -3,6 +3,12 @@ Wallet
 
 A wallet application built using AngularJS, on top of a node.js server.
 
+<h2>
+<ul>
+<li>JavaScript logic and controllers can be found in controller.js</li>
+</ul>
+
+
 
 <h2>Features Built</h2>
 <ul>
