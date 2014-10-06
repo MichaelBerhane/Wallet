@@ -1,10 +1,13 @@
 var appControllers = angular.module('appControllers', []);
 
+  // List Factory //
 
   angular.module('myApp').factory('List', function(){
 
         sessionStorage.transactions;
         sessionStorage.spent;
+
+        // if there is no data, create an empty array //
 
         if(sessionStorage.transactions === undefined)
           var x = [];
@@ -16,6 +19,7 @@ var appControllers = angular.module('appControllers', []);
         else
           var y = JSON.parse(sessionStorage.spent);
 
+        // functions //
 
       return {
         check: function(){
@@ -24,6 +28,8 @@ var appControllers = angular.module('appControllers', []);
         spentcheck: function(){
            return y;
         },
+
+        /* add a positive transaction */
         add: function(num, curr, date){
             x.push({amount: num, currency: curr, d: date});
             console.log("current array: " + x);
@@ -31,6 +37,8 @@ var appControllers = angular.module('appControllers', []);
             console.log("session_tran: " + sessionStorage.transactions);
 
         },
+
+        /* add a minus transaction */
         minus: function(num, curr, date){
           y.push({amount: num, currency: curr, d: date});
           console.log("current array: " + y);
@@ -41,9 +49,7 @@ var appControllers = angular.module('appControllers', []);
   });
 
 
-  /*******************
-    * Wallet Factory/Model
-  ***************************/
+  // Wallet Factory/Model //
 
   angular.module('myApp').factory('Wallet', function(){
 
@@ -60,7 +66,6 @@ var appControllers = angular.module('appControllers', []);
     return {
         check_amount: function(){
           x = Number(sessionStorage.balance);
-          console.log("original amount: " + sessionStorage.balance);
           return x;
         },
         add_amount: function(field){
@@ -104,6 +109,9 @@ var appControllers = angular.module('appControllers', []);
   });
 
 
+  // List Controller //
+
+
   appControllers.controller('ListController',['$scope', 'Wallet', 'List', function($scope, Wallet, List){
       $scope.transactions = List.check();
       $scope.spent = List.spentcheck();
@@ -112,9 +120,7 @@ var appControllers = angular.module('appControllers', []);
 
 
 
-  /*************
-  * Wallet Controller
-  ********************/
+  // Wallet Controller //
 
   appControllers.controller('WalletController', ['$scope', 'Wallet', 'List', function($scope, Wallet, List){
 
@@ -136,15 +142,14 @@ var appControllers = angular.module('appControllers', []);
         { id: 2, curr: 'GBP' },
         { id: 3, curr: 'EUR'}];
 
-    $scope.balance = Wallet.check_amount();                     /* current balance */
+    $scope.balance = Wallet.check_amount();                     // current balance //
 
     $scope.add = function(){
-      if(Wallet.error($scope.field)){                           /* check if input is a number */
-        $scope.balance = Wallet.add_amount($scope.field);       /* add new amount to current amount */
-        hidewarning();                                          /* remove warning */
-        List.add($scope.field, $scope.currency, new Date());    /* add transaction to the transaction list */
-        $scope.field = 0;                                       /* reset input field to zero */
-        /*$scope.transactions = List.check(); */
+      if(Wallet.error($scope.field)){                           // check if input is a number //
+        $scope.balance = Wallet.add_amount($scope.field);       // add new amount to current amount //
+        hidewarning();                                          // remove warning //
+        List.add($scope.field, $scope.currency, new Date());    // add transaction to the transaction list //
+        $scope.field = 0;                                       // reset input field to zero //
       }
       else{
         return false;
@@ -152,10 +157,10 @@ var appControllers = angular.module('appControllers', []);
     };
 
     $scope.minus = function(){
-      if((Wallet.error($scope.Minusfield)) && (Wallet.correct_amount($scope.Minusfield))){
-        $scope.balance = Wallet.minus_amount($scope.Minusfield);
+      if((Wallet.error($scope.Minusfield)) && (Wallet.correct_amount($scope.Minusfield))){   // check if input is a number, and that total is not beneath 0
+        $scope.balance = Wallet.minus_amount($scope.Minusfield);                            // update balance
         hidewarning();
-        List.minus($scope.Minusfield, $scope.currency, new Date());
+        List.minus($scope.Minusfield, $scope.currency, new Date());                         //add transaction
         $scope.Minusfield = 0;
       }
       else{
