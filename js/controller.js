@@ -6,29 +6,31 @@ var appControllers = angular.module('appControllers', []);
         sessionStorage.transactions;
         sessionStorage.spent;
 
-        var x = [];
-        var y = [];
+        if(sessionStorage.transactions === undefined){
+            var x = [];
+        }
+        else{
+            var x = JSON.parse(sessionStorage.transactions);
+            /*var y = JSON.parse(sessionStorage.spent); */
+        }
 
       return {
         check: function(){
-          if(sessionStorage.transactions === undefined){
-          }
-          else{
-            console.log("session_tran: " + sessionStorage.transactions);
-            return JSON.parse(sessionStorage.transactions);
-          }
-
+            return x;
         },
         spentcheck: function(){
-        /*  return JSON.parse(sessionStorage.spent); */
+          /*  return y; */
         },
         add: function(num, curr, date){
-          x.push({amount: num, currency: curr, d: date});
-          sessionStorage.transactions = JSON.stringify(x);
+            x.push({amount: num, currency: curr, d: date});
+            console.log("current array: " + x);
+            sessionStorage.transactions = JSON.stringify(x);
+            console.log("session_tran: " + sessionStorage.transactions);
 
         },
         minus: function(num, curr, date){
           y.push({amount: num, currency: curr, d: date});
+          console.log("current array: " + y);
           sessionStorage.spent = JSON.stringify(y);
 
         }
@@ -131,14 +133,15 @@ var appControllers = angular.module('appControllers', []);
         { id: 2, curr: 'GBP' },
         { id: 3, curr: 'EUR'}];
 
-    $scope.balance = Wallet.check_amount();
+    $scope.balance = Wallet.check_amount();                     /* current balance */
 
     $scope.add = function(){
-      if(Wallet.error($scope.field)){
-        $scope.balance = Wallet.add_amount($scope.field);
-        hidewarning();
-        List.add($scope.field, $scope.currency, new Date());
-        $scope.field = 0;
+      if(Wallet.error($scope.field)){                           /* check if input is a number */
+        $scope.balance = Wallet.add_amount($scope.field);       /* add new amount to current amount */
+        hidewarning();                                          /* remove warning */
+        List.add($scope.field, $scope.currency, new Date());    /* add transaction to the transaction list */
+        $scope.field = 0;                                       /* reset input field to zero */
+        /*$scope.transactions = List.check(); */
       }
       else{
         return false;
