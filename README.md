@@ -2,10 +2,13 @@ Wallet
 ======
 
 A front-end wallet wallet application built using AngularJS, on top of a node.js server.
+Run application on the command line by running..
+
+<blockquote>node server</blockquote>
 
 
 <ul>
-<li><b>JavaScript logic and controllers can be found in controller.js</b></li>
+<li><b>Primary JavaScript logic and controllers can be found in controller.js</b></li>
 <li><b>Primary html can be found in partials/wallet.html</b></li>
 </ul>
 
