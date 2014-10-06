@@ -8,7 +8,7 @@ Run application on the command line by running..
 
 
 <ul>
-<li><b>Primary JavaScript logic and controllers can be found in controller.js</b></li>
+<li><b>Primary JavaScript logic and js/controllers can be found in controller.js</b></li>
 <li><b>Primary html can be found in partials/wallet.html</b></li>
 </ul>
 
